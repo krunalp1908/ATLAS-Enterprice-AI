@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Atlas Enterprise AI</title>
+    <link rel="stylesheet" href="/static/css/styles.css">
+    <script src="/static/js/app.js" defer></script>
+  </head>
+  <body>
+    <div class="shell">
+      <aside class="sidebar">
+        <div class="logo">ATLAS<span> AI</span><small>ENTERPRISE KNOWLEDGE</small></div>
+        <div class="eyebrow">WORKSPACE</div>
+        <nav class="nav-group" aria-label="Workspace navigation">
+          <button class="nav active" id="chatTab" type="button">Knowledge chat</button>
+          <button class="nav" id="docsTab" type="button">Documents</button>
+          <button class="nav" id="approvalTab" type="button">Approvals</button>
+          <button class="nav" id="adminTab" type="button">Operations</button>
+        </nav>
+        <div class="sidebottom">
+          <div>Demo workspace</div>
+          <div>Region: {{ region }}</div>
+          <div>{{ mode }}</div>
+        </div>
+      </aside>
+
+      <main>
+        <header>
+          <div>
+            <h1 id="heading">Ask your organization's knowledge</h1>
+            <p>Find answers grounded in approved documents.</p>
+          </div>
+          <span class="pill">Single-workspace demo</span>
+        </header>
+
+        <section class="panel" id="chatView">
+          <div class="hero">
+            <div class="spark" aria-hidden="true">✦</div>
+            <h2>Your organization's knowledge, at your fingertips</h2>
+            <p>Ask a question to search the documents available in this workspace.</p>
+            <div class="suggestions">
+              <button type="button" data-q="What documents are available in this workspace?">What documents are available?</button>
+              <button type="button" data-q="Summarize the key policies in the knowledge base.">Summarize key policies</button>
+              <button type="button" data-q="What are the main topics covered by the uploaded documents?">What topics are covered?</button>
+            </div>
+          </div>
+          <div id="messages" aria-live="polite" aria-label="Conversation"></div>
+          <form class="composer" id="chatForm">
+            <textarea id="question" name="question" rows="2" placeholder="Ask a question..." aria-label="Your question" required></textarea>
+            <button type="submit">Ask</button>
+          </form>
+          <div class="hint">Answers are based on approved workspace documents.</div>
+          <button id="newChat" type="button">New conversation</button>
+        </section>
+
+        <section class="panel hidden" id="docsView">
+          <h2>Document management</h2>
+          <p>Upload a PDF, DOCX, TXT, or Markdown document to the workspace.</p>
+          <form id="uploadForm">
+            <input id="file" name="file" type="file" accept=".pdf,.docx,.txt,.md" required>
+            <button type="submit">Upload document</button>
+          </form>
+          <div id="docs" aria-live="polite"></div>
+        </section>
+
+        <section class="panel hidden" id="approvalView">
+          <div class="section-header">
+            <div>
+              <h2>Approval requests</h2>
+              <p id="approvalSummary">Review requests that require administrator approval.</p>
+            </div>
+            <button id="refreshApprovals" type="button">Refresh</button>
+          </div>
+          <div id="approvalList" aria-live="polite"></div>
+        </section>
+
+        <section class="panel hidden" id="adminView">
+          <h2>Operational overview</h2>
+          <h3>Document and feedback metrics</h3>
+          <pre id="metrics">Metrics will appear when this view is opened.</pre>
+          <h3>Guardrail activity</h3>
+          <pre id="guardrailMetrics">Guardrail metrics will appear when this view is opened.</pre>
+        </section>
+      </main>
+    </div>
+    <div id="toast" role="status" aria-live="polite"></div>
+  </body>
+</html>
