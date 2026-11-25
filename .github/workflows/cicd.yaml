@@ -41,7 +41,7 @@ jobs:
         run: ruff check app worker test --exclude test/Bedrock_test.py --select E4,E7,E9,F --ignore E701,E702,F401
 
       - name: Run unit tests
-        run: pytest -q test --ignore=test/Bedrock_test.py
+        run: python -m pytest -q test --ignore=test/Bedrock_test.py
 
   build-and-push:
     name: Build and push to ECR
