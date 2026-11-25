@@ -184,4 +184,4 @@ def guardrail_metrics(p:Principal=Depends(principal)):
             GROUP BY action ORDER BY action""",(p.tenant,)).fetchall()
     return {'events':rows,'mode':'deterministic_demo','managed_bedrock_guardrails':False}
 
-    
+
