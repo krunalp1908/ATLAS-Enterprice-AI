@@ -241,4 +241,5 @@ jobs:
           docker rm "$previous" 2>/dev/null || true
           trap - EXIT
 
+          
           echo "Deployed ${image} successfully."
